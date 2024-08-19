@@ -9,21 +9,12 @@ BankingApp is a modern, scalable, and industry-compliant banking application bui
 - [Architecture](#architecture)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Running the Application](#running-the-application)
 - [Microservices](#microservices)
   - [AccountService](#accountservice)
   - [TransactionService](#transactionservice)
   - [CustomerService](#customerservice)
   - [IntegrationService](#integrationservice)
   - [AuditService](#auditservice)
-- [Event-Driven Architecture](#event-driven-architecture)
-- [gRPC and RabbitMQ](#grpc-and-rabbitmq)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Architecture
 
