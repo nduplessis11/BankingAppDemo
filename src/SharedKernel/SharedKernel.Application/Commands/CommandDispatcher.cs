@@ -22,10 +22,7 @@ public class CommandDispatcher(IServiceProvider serviceProvider)
     private THandler GetHandler<THandler>(string commandName)
     {
         var handler = serviceProvider.GetService<THandler>();
-        if (handler == null)
-        {
-            throw new InvalidOperationException($"No handler registered for type {commandName}");
-        }
+        if (handler == null) throw new InvalidOperationException($"No handler registered for type {commandName}");
         return handler;
     }
 }

@@ -44,9 +44,9 @@ public class CommandDispatcherTests
         var services = new ServiceCollection();
         services.AddSingleton(handlerMock.Object);
         var serviceProvider = services.BuildServiceProvider();
-        
+
         var dispatcher = new CommandDispatcher(serviceProvider);
-        
+
         // Act
         var response = await dispatcher.DispatchAsync<ICommand<Guid>, Guid>(command.Object, cancellationToken);
 
@@ -63,8 +63,9 @@ public class CommandDispatcherTests
         var cancellationToken = CancellationToken.None;
         var serviceProvider = new ServiceCollection().BuildServiceProvider();
         var dispatcher = new CommandDispatcher(serviceProvider);
-        
+
         // Act & Assert
-        await Assert.ThrowsAsync<InvalidOperationException>(() => dispatcher.DispatchAsync(command.Object, cancellationToken));
+        await Assert.ThrowsAsync<InvalidOperationException>(() =>
+            dispatcher.DispatchAsync(command.Object, cancellationToken));
     }
 }
