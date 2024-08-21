@@ -14,6 +14,8 @@ public sealed record AccountId(Guid Value)
         return new AccountId(value);
     }
 
+    public static AccountId Empty => new(Guid.Empty);
+
     public override string ToString()
     {
         return Value.ToString();

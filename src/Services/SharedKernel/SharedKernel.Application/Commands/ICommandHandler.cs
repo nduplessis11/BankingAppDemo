@@ -6,8 +6,8 @@ public interface ICommandHandler<in TCommand> where TCommand : ICommand
     Task HandleAsync(TCommand command, CancellationToken cancellationToken);
 }
 
-// For commands with a response
-public interface ICommandHandler<in TCommand, TResponse> where TCommand : ICommand<TResponse>
+// For commands with a result
+public interface ICommandHandler<in TCommand, TResult> where TCommand : ICommand<TResult>
 {
-    Task<TResponse> HandleAsync(TCommand command, CancellationToken cancellationToken);
+    Task<TResult> HandleAsync(TCommand command, CancellationToken cancellationToken);
 }

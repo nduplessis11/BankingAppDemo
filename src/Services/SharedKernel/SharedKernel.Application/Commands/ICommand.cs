@@ -6,6 +6,6 @@ public struct Unit
     public static readonly Unit Value = new();
 }
 
-public interface ICommand<out TResponse>;
+public interface ICommand<out TResult>;
 
 public interface ICommand : ICommand<Unit>;

@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\SharedKernel\SharedKernel.Application\SharedKernel.Application.csproj" />
+      <ProjectReference Include="..\AccountService.Domain\AccountService.Domain.csproj" />
+    </ItemGroup>
+
 </Project>
