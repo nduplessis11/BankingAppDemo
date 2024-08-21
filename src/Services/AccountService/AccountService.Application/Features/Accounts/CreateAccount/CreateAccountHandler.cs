@@ -4,15 +4,15 @@ using SharedKernel.Application.Commands;
 
 namespace AccountService.Application.Features.Accounts.CreateAccount;
 
-public record CreateAccountCommand(AccountNumber accountNumber, CustomerId customerId)
+public record CreateAccountCommand(AccountNumber AccountNumber, CustomerId CustomerId)
     : ICommand<CreateAccountResult>;
-public record CreateAccountResult(AccountId accountId);
+public record CreateAccountResult(AccountId AccountId);
 
-internal class CreateAccountCommandHandler : ICommandHandler<CreateAccountCommand, CreateAccountResult>
+public class CreateAccountCommandHandler : ICommandHandler<CreateAccountCommand, CreateAccountResult>
 {
     public Task<CreateAccountResult> HandleAsync(CreateAccountCommand command, CancellationToken cancellationToken)
     {
-        var account = new Account(command.accountNumber, command.customerId);
+        var account = new Account(command.AccountNumber, command.CustomerId);
         Task.Delay(1000, cancellationToken); // Simulate long running operation
         return Task.FromResult(new CreateAccountResult(account.Id));
     }

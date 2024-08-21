@@ -34,6 +34,6 @@ public class CreateAccountCommandHandlerTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.NotEqual(default(Guid), result.accountId.Value);
+        Assert.NotEqual(AccountId.Empty.Value, result.AccountId.Value);
     }
 }

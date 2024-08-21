@@ -10,7 +10,6 @@ public class AccountTests
     {
         var accountNumber = AccountNumber.From("1234567890");
         var customerId = CustomerId.From(Guid.NewGuid());
-        var fiservAcctId = FiservAcctId.From("10183903051613");
 
         var account = new Account(accountNumber, customerId);
 
