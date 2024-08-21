@@ -35,7 +35,6 @@ public class Account
     public DateTime CreatedDate { get; private set; }
 
     // Methods for domain operations
-
     public void Deposit(decimal amount)
     {
         Balance = Balance.Add(amount);

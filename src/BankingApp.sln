@@ -3,27 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel.Domain", "SharedKernel\SharedKernel.Domain\SharedKernel.Domain.csproj", "{B19B65B2-5967-46F1-AC7E-7160388671B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel.Domain", "SharedKernel\SharedKernel.Domain\SharedKernel.Domain.csproj", "{B19B65B2-5967-46F1-AC7E-7160388671B2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedKernel", "SharedKernel", "{D67C9C10-5934-4D38-B761-C3357F93DA26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel.Infrastructure", "SharedKernel\SharedKernel.Infrastructure\SharedKernel.Infrastructure.csproj", "{69BCB99B-630B-4C47-8D78-AD219076B6F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel.Infrastructure", "SharedKernel\SharedKernel.Infrastructure\SharedKernel.Infrastructure.csproj", "{69BCB99B-630B-4C47-8D78-AD219076B6F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel.Tests", "SharedKernel\SharedKernel.Tests\SharedKernel.Tests.csproj", "{90BAA3AC-29DA-4D9C-8642-0FF905729E0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel.Tests", "SharedKernel\SharedKernel.Tests\SharedKernel.Tests.csproj", "{90BAA3AC-29DA-4D9C-8642-0FF905729E0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel.Application", "SharedKernel\SharedKernel.Application\SharedKernel.Application.csproj", "{7AF8C67D-3FBA-4BC9-9BB1-51934B40AF21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel.Application", "SharedKernel\SharedKernel.Application\SharedKernel.Application.csproj", "{7AF8C67D-3FBA-4BC9-9BB1-51934B40AF21}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AccountService", "AccountService", "{4A704056-C531-4BCB-AC61-E06C2BCC1530}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Api", "AccountService\AccountService.Api\AccountService.Api.csproj", "{E2B38DDE-FC78-4921-BAEC-888F51ED8F88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.Api", "AccountService\AccountService.Api\AccountService.Api.csproj", "{E2B38DDE-FC78-4921-BAEC-888F51ED8F88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Domain", "AccountService\AccountService.Domain\AccountService.Domain.csproj", "{A9A2AF3D-BE31-4FE4-9DF4-1D427F8EDD6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.Domain", "AccountService\AccountService.Domain\AccountService.Domain.csproj", "{A9A2AF3D-BE31-4FE4-9DF4-1D427F8EDD6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Application", "AccountService\AccountService.Application\AccountService.Application.csproj", "{0C4BA82D-4836-4785-90C4-289BCCBF9119}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.Application", "AccountService\AccountService.Application\AccountService.Application.csproj", "{0C4BA82D-4836-4785-90C4-289BCCBF9119}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Infrastructure", "AccountService\AccountService.Infrastructure\AccountService.Infrastructure.csproj", "{66B1B4E2-DE25-46D6-81CE-210060BD360E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.Infrastructure", "AccountService\AccountService.Infrastructure\AccountService.Infrastructure.csproj", "{66B1B4E2-DE25-46D6-81CE-210060BD360E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountService.Tests", "AccountService\AccountService.Tests\AccountService.Tests.csproj", "{61CE1F34-B90F-4DCF-BD09-01EB7E787438}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountService.Tests", "AccountService\AccountService.Tests\AccountService.Tests.csproj", "{61CE1F34-B90F-4DCF-BD09-01EB7E787438}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{76B2116D-B56B-4AD7-9D71-EFB8741CAD37}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalServices", "ExternalServices", "{33977B20-58B0-4CBA-A47C-1F10F94C865B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockFiservDnaCoreApi", "ExternalServices\MockFiservDnaCoreApi\MockFiservDnaCoreApi.csproj", "{6B0D5F08-2CE3-41D8-8912-FC843614BBB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,20 +73,27 @@ Global
 		{61CE1F34-B90F-4DCF-BD09-01EB7E787438}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61CE1F34-B90F-4DCF-BD09-01EB7E787438}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61CE1F34-B90F-4DCF-BD09-01EB7E787438}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B0D5F08-2CE3-41D8-8912-FC843614BBB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B0D5F08-2CE3-41D8-8912-FC843614BBB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B0D5F08-2CE3-41D8-8912-FC843614BBB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B0D5F08-2CE3-41D8-8912-FC843614BBB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B19B65B2-5967-46F1-AC7E-7160388671B2} = {D67C9C10-5934-4D38-B761-C3357F93DA26}
+		{D67C9C10-5934-4D38-B761-C3357F93DA26} = {76B2116D-B56B-4AD7-9D71-EFB8741CAD37}
 		{69BCB99B-630B-4C47-8D78-AD219076B6F5} = {D67C9C10-5934-4D38-B761-C3357F93DA26}
 		{90BAA3AC-29DA-4D9C-8642-0FF905729E0D} = {D67C9C10-5934-4D38-B761-C3357F93DA26}
 		{7AF8C67D-3FBA-4BC9-9BB1-51934B40AF21} = {D67C9C10-5934-4D38-B761-C3357F93DA26}
+		{4A704056-C531-4BCB-AC61-E06C2BCC1530} = {76B2116D-B56B-4AD7-9D71-EFB8741CAD37}
 		{E2B38DDE-FC78-4921-BAEC-888F51ED8F88} = {4A704056-C531-4BCB-AC61-E06C2BCC1530}
 		{A9A2AF3D-BE31-4FE4-9DF4-1D427F8EDD6A} = {4A704056-C531-4BCB-AC61-E06C2BCC1530}
 		{0C4BA82D-4836-4785-90C4-289BCCBF9119} = {4A704056-C531-4BCB-AC61-E06C2BCC1530}
 		{66B1B4E2-DE25-46D6-81CE-210060BD360E} = {4A704056-C531-4BCB-AC61-E06C2BCC1530}
 		{61CE1F34-B90F-4DCF-BD09-01EB7E787438} = {4A704056-C531-4BCB-AC61-E06C2BCC1530}
+		{6B0D5F08-2CE3-41D8-8912-FC843614BBB7} = {33977B20-58B0-4CBA-A47C-1F10F94C865B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8E129A77-F2E8-4F6F-9B29-4CEAA2A0DC46}
