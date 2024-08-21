@@ -8,93 +8,34 @@ public class AccountTests
     [Fact]
     public void Constructor_ShouldCreateAccount_WithValidParameters()
     {
-        // Arrange
         var accountNumber = AccountNumber.From("1234567890");
         var customerId = CustomerId.From(Guid.NewGuid());
-        var initialBalance = Balance.From(1000m);
-        const decimal overdraftLimit = 50m;
+        var fiservAcctId = FiservAcctId.From("10183903051613");
 
-        // Act
-        var account = new Account(accountNumber, customerId, initialBalance, overdraftLimit);
+        var account = new Account(accountNumber, customerId, fiservAcctId);
 
-        // Assert
-        Assert.NotNull(account.AccountId);
+        Assert.NotNull(account.Id);
         Assert.Equal(accountNumber, account.AccountNumber);
         Assert.Equal(customerId, account.CustomerId);
-        Assert.Equal(initialBalance, account.Balance);
-        Assert.False(account.IsOverdrawn());
+        Assert.Equal(DateTime.UtcNow.Date, account.CreatedDate.Date);
+        Assert.Equal(fiservAcctId, account.FiservAcctId);
     }
 
     [Fact]
     public void RehydrationConstructor_ShouldCreateAccount_FromPersistedData()
     {
-        // Arrange
         var accountId = AccountId.New();
         var accountNumber = AccountNumber.From("1234567890");
         var customerId = CustomerId.From(Guid.NewGuid());
-        var balance = Balance.From(500m);
-        const decimal overdraftLimit = 50m;
         var createdDate = new DateTime(2024, 1, 1);
+        var fiservAcctId = FiservAcctId.From("10183903051613");
 
-        // Act
-        var account = new Account(accountId, accountNumber, customerId, balance, overdraftLimit, createdDate);
+        var account = new Account(accountId, accountNumber, customerId, createdDate, fiservAcctId);
 
-        // Assert
-        Assert.Equal(accountId, account.AccountId);
+        Assert.Equal(accountId, account.Id);
         Assert.Equal(accountNumber, account.AccountNumber);
         Assert.Equal(customerId, account.CustomerId);
-        Assert.Equal(balance, account.Balance);
         Assert.Equal(createdDate, account.CreatedDate);
-    }
-
-    [Fact]
-    public void Deposit_ShouldIncreaseBalance()
-    {
-        // Arrange
-        var accountNumber = AccountNumber.From("1234567890");
-        var customerId = CustomerId.From(Guid.NewGuid());
-        var initialBalance = Balance.From(1000m);
-        const decimal overdraftLimit = 50m;
-        var account = new Account(accountNumber, customerId, initialBalance, overdraftLimit);
-
-        // Act
-        account.Deposit(200m);
-
-        // Assert
-        Assert.Equal(Balance.From(1200m), account.Balance);
-    }
-
-    [Fact]
-    public void Withdraw_ShouldDecreaseBalance()
-    {
-        // Arrange
-        var accountNumber = AccountNumber.From("1234567890");
-        var customerId = CustomerId.From(Guid.NewGuid());
-        var initialBalance = Balance.From(1000m);
-        const decimal overdraftLimit = 50m;
-        var account = new Account(accountNumber, customerId, initialBalance, overdraftLimit);
-
-        // Act
-        account.Withdraw(300m);
-
-        // Assert
-        Assert.Equal(Balance.From(700m), account.Balance);
-    }
-
-    [Fact]
-    public void IsOverdrawn_ShouldReturnTrue_WhenBalanceIsNegative()
-    {
-        // Arrange
-        var accountNumber = AccountNumber.From("1234567890");
-        var customerId = CustomerId.From(Guid.NewGuid());
-        var initialBalance = Balance.From(0m);
-        const decimal overdraftLimit = 50m;
-        var account = new Account(accountNumber, customerId, initialBalance, overdraftLimit);
-
-        // Act
-        account.Withdraw(100m);
-
-        // Assert
-        Assert.True(account.IsOverdrawn());
+        Assert.Equal(fiservAcctId, account.FiservAcctId);
     }
 }
