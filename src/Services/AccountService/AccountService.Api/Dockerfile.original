@@ -13,11 +13,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["AccountService/AccountService.Api/AccountService.Api.csproj", "AccountService/AccountService.Api/"]
-COPY ["SharedKernel/SharedKernel.Application/SharedKernel.Application.csproj", "SharedKernel/SharedKernel.Application/"]
-COPY ["AccountService/AccountService.Application/AccountService.Application.csproj", "AccountService/AccountService.Application/"]
-COPY ["AccountService/AccountService.Domain/AccountService.Domain.csproj", "AccountService/AccountService.Domain/"]
-COPY ["SharedKernel/SharedKernel.Domain/SharedKernel.Domain.csproj", "SharedKernel/SharedKernel.Domain/"]
-COPY ["AccountService/AccountService.Infrastructure/AccountService.Infrastructure.csproj", "AccountService/AccountService.Infrastructure/"]
 RUN dotnet restore "./AccountService/AccountService.Api/AccountService.Api.csproj"
 COPY . .
 WORKDIR "/src/AccountService/AccountService.Api"

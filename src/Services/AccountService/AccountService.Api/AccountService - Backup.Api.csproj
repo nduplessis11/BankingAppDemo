@@ -7,7 +7,6 @@
         <UserSecretsId>5a91a208-6ca2-4427-bce1-4a714c6b56be</UserSecretsId>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <DockerfileContext>..\..</DockerfileContext>
-        <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
     </PropertyGroup>
 
     <ItemGroup>
@@ -22,7 +21,6 @@
     <ItemGroup>
       <ProjectReference Include="..\..\SharedKernel\SharedKernel.Application\SharedKernel.Application.csproj" />
       <ProjectReference Include="..\AccountService.Application\AccountService.Application.csproj" />
-      <ProjectReference Include="..\AccountService.Infrastructure\AccountService.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

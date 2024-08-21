@@ -1,0 +1,6 @@
+services:
+  accountdb:
+    image: postgres
+
+volumes:
+  postgres_account:

@@ -1,4 +1,5 @@
-﻿using AccountService.Domain.Entities;
+﻿using AccountService.Application.Interfaces;
+using AccountService.Domain.Entities;
 using AccountService.Domain.ValueObjects;
 using SharedKernel.Application.Commands;
 
@@ -10,10 +11,20 @@ public record CreateAccountResult(AccountId AccountId);
 
 public class CreateAccountCommandHandler : ICommandHandler<CreateAccountCommand, CreateAccountResult>
 {
-    public Task<CreateAccountResult> HandleAsync(CreateAccountCommand command, CancellationToken cancellationToken)
+    private readonly IAccountRepository _accountRepository;
+
+    public CreateAccountCommandHandler(IAccountRepository accountRepository)
     {
+        _accountRepository = accountRepository;
+    }
+
+    public async Task<CreateAccountResult> HandleAsync(CreateAccountCommand command, CancellationToken cancellationToken)
+    {
+        // TODO: Need to let database handle creating the GUID
         var account = new Account(command.AccountNumber, command.CustomerId);
-        Task.Delay(1000, cancellationToken); // Simulate long running operation
-        return Task.FromResult(new CreateAccountResult(account.Id));
+
+        await _accountRepository.AddAsync(account);
+
+        return new CreateAccountResult(account.Id);
     }
 }

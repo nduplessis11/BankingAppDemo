@@ -32,4 +32,6 @@ public class Account : Entity<AccountId>
     public CustomerId CustomerId { get; private set; }
     // public FiservAcctId FiservAcctId { get; private set; } // TODO: External API integration
     public DateTime CreatedDate { get; private set; }
+
+    // Domain logic can go here
 }

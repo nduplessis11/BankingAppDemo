@@ -1,0 +1,13 @@
+services:
+  accountdb:
+    container_name: accountdb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=AccountDb
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_account:/var/lib/postgresql/data/
+  
