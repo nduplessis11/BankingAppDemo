@@ -22,6 +22,7 @@ public class AccountRepository : IAccountRepository
 
     public async Task<Account> GetByIdAsync(AccountId accountId)
     {
+        // TODO: Optional monad
         return await _context.Accounts.FirstOrDefaultAsync(a => a.Id == accountId);
     }
 }

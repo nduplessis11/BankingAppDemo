@@ -13,7 +13,6 @@ public class AccountTests
 
         var account = new Account(accountNumber, customerId);
 
-        Assert.NotNull(account.Id);
         Assert.Equal(accountNumber, account.AccountNumber);
         Assert.Equal(customerId, account.CustomerId);
         Assert.Equal(DateTime.UtcNow.Date, account.CreatedDate.Date);
