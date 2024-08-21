@@ -2,6 +2,7 @@
 using AccountService.Domain.Entities;
 using AccountService.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;
+using SharedKernel.Application.Utilities;
 
 namespace AccountService.Infrastructure.Persistence;
 
@@ -20,9 +21,9 @@ public class AccountRepository : IAccountRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task<Account> GetByIdAsync(AccountId accountId)
+    public async Task<Option<Account>> GetByIdAsync(AccountId accountId)
     {
-        // TODO: Optional monad
-        return await _context.Accounts.FirstOrDefaultAsync(a => a.Id == accountId);
+        var account = await _context.Accounts.FirstOrDefaultAsync(a => a.Id == accountId);
+        return account == null ? Option<Account>.None() : Option<Account>.Some(account);
     }
 }
