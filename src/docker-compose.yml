@@ -8,5 +8,11 @@ services:
       context: .
       dockerfile: ExternalServices/MockFiservDnaCoreApi/Dockerfile
 
+  account.api:
+    image: ${DOCKER_REGISTRY-}accountapi
+    build:
+      context: .
+      dockerfile: Services/AccountService/AccountService.Api/Dockerfile
+
 volumes:
   postgres_account:

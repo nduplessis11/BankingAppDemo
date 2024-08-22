@@ -42,5 +42,11 @@ public class AccountDbContext : DbContext
             .HasConversion(
             cid => cid.Value,
             value => CustomerId.From(value));
+
+        modelBuilder.Entity<Account>()
+            .Property(a => a.FiservAcctId)
+            .HasConversion(
+            faid => faid.Value,
+            value => FiservAcctId.From(value));
     }
 }

@@ -14,5 +14,20 @@ services:
   fiserv.api:
     ports:
       - "6100:8080"
-      - "6160:8081" 
+      - "6160:8081"
+      
+  account.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Server=accountdb;Port=5432;Database=account_db;User Id=postgres;Password=postgres;Include Error Detail=true
+      - FiservApi__FiservUrl=http://fiserv.api:8080
+
+    depends_on:
+      - accountdb
+      - fiserv.api 
+    ports:
+      - "6000:8080"
+      - "6050:8081"
   

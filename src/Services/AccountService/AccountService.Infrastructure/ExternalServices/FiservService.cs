@@ -1,25 +1,21 @@
 ﻿using System.Text.Json;
 using System.Text;
 using AccountService.Application.Services;
+using System.Text.Json.Serialization;
 
 namespace AccountService.Infrastructure.ExternalServices;
 
-public class FiservService : IFiservService
+public class FiservService(HttpClient httpClient, JsonSerializerOptions options) : IFiservService
 {
-    private readonly HttpClient _httpClient;
-
-    public FiservService(HttpClient httpClient)
-    {
-        _httpClient = httpClient;
-    }
+    private readonly HttpClient _httpClient = httpClient;
+    private readonly JsonSerializerOptions _jsonSerializerOptions = options;
 
     public async Task<FiservAccountResponse> AddAccountAsync(FiservAccountRequest request)
     {
         var jsonContent = JsonSerializer.Serialize(request);
         var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-        const string tempUrlBase = "http://localhost:6100";
-        var httpRequest = new HttpRequestMessage(HttpMethod.Post, $"{tempUrlBase}/acctmgmt/accounts")
+        var httpRequest = new HttpRequestMessage(HttpMethod.Post, "/acctmgmt/accounts")
         {
             Content = content
         };
@@ -33,7 +29,8 @@ public class FiservService : IFiservService
         response.EnsureSuccessStatusCode();
 
         var responseContent = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<FiservAccountResponse>(responseContent);
+
+        return JsonSerializer.Deserialize<FiservAccountResponse>(responseContent, _jsonSerializerOptions);
     }
 }
 
