@@ -10,8 +10,9 @@ public class AccountTests
     {
         var accountNumber = AccountNumber.From("1234567890");
         var customerId = CustomerId.From(Guid.NewGuid());
+        var fiservAcctId = FiservAcctId.From("1234567890");
 
-        var account = new Account(accountNumber, customerId);
+        var account = new Account(accountNumber, customerId, fiservAcctId);
 
         Assert.Equal(accountNumber, account.AccountNumber);
         Assert.Equal(customerId, account.CustomerId);
@@ -25,8 +26,9 @@ public class AccountTests
         var accountNumber = AccountNumber.From("1234567890");
         var customerId = CustomerId.From(Guid.NewGuid());
         var createdDate = new DateTime(2024, 1, 1);
+        var fiservAcctId = FiservAcctId.From("1234567890");
 
-        var account = new Account(accountId, accountNumber, customerId, createdDate);
+        var account = new Account(accountId, accountNumber, customerId, fiservAcctId, createdDate);
 
         Assert.Equal(accountId, account.Id);
         Assert.Equal(accountNumber, account.AccountNumber);

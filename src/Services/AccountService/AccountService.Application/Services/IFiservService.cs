@@ -1,38 +1,10 @@
-﻿using System.Text.Json;
-using System.Text;
+﻿namespace AccountService.Application.Services;
 
-namespace AccountService.Infrastructure.ExternalServices;
-
-public class FiservClient
+// Application layer should not have any dependencies on infrastructure layer
+// This interface should be implemented in the infrastructure layer
+public interface IFiservService
 {
-    private readonly HttpClient _httpClient;
-
-    public FiservClient(HttpClient httpClient)
-    {
-        _httpClient = httpClient;
-    }
-
-    public async Task<FiservAccountResponse> AddAccountAsync(FiservAccountRequest request)
-    {
-        var jsonContent = JsonSerializer.Serialize(request);
-        var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
-        var httpRequest = new HttpRequestMessage(HttpMethod.Post, "/acctmgmt/accounts")
-        {
-            Content = content
-        };
-
-        httpRequest.Headers.Add("EfxHeader", "efx_header_value");
-        httpRequest.Headers.Add("ConsumerAuthToken", "very_secure_plaintext_token");
-        httpRequest.Headers.Add("X-OVERRIDETOKEN", "override_token_value");
-
-        var response = await _httpClient.SendAsync(httpRequest);
-
-        response.EnsureSuccessStatusCode();
-
-        var responseContent = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<FiservAccountResponse>(responseContent);
-    }
+    Task<FiservAccountResponse> AddAccountAsync(FiservAccountRequest request);
 }
 
 public readonly record struct FiservAccountRequest(

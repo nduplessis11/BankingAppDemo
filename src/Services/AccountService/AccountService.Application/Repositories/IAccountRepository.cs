@@ -2,7 +2,7 @@
 using AccountService.Domain.ValueObjects;
 using SharedKernel.Application.Utilities;
 
-namespace AccountService.Application.Interfaces;
+namespace AccountService.Application.Repositories;
 
 public interface IAccountRepository
 {

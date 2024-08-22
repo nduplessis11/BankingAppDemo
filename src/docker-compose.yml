@@ -2,5 +2,11 @@ services:
   accountdb:
     image: postgres
 
+  fiserv.api:
+    image: ${DOCKER_REGISTRY-}fiservapi
+    build:
+      context: .
+      dockerfile: ExternalServices/MockFiservDnaCoreApi/Dockerfile
+
 volumes:
   postgres_account:

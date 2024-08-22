@@ -1,4 +1,4 @@
-﻿using AccountService.Application.Interfaces;
+﻿using AccountService.Application.Repositories;
 using AccountService.Domain.Entities;
 using AccountService.Domain.ValueObjects;
 using Microsoft.EntityFrameworkCore;

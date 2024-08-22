@@ -1,7 +1,9 @@
-﻿using AccountService.Application.Interfaces;
+﻿using AccountService.Application.Repositories;
+using AccountService.Application.Services;
 using AccountService.Domain.Entities;
 using AccountService.Domain.ValueObjects;
 using SharedKernel.Application.Commands;
+using System.Globalization;
 
 namespace AccountService.Application.Features.Accounts.CreateAccount;
 
@@ -9,19 +11,53 @@ public record CreateAccountCommand(AccountNumber AccountNumber, CustomerId Custo
     : ICommand<CreateAccountResult>;
 public record CreateAccountResult(AccountId AccountId);
 
-public class CreateAccountCommandHandler : ICommandHandler<CreateAccountCommand, CreateAccountResult>
+public class CreateAccountCommandHandler(IAccountRepository accountRepository, IFiservService fiservService)
+    : ICommandHandler<CreateAccountCommand, CreateAccountResult>
 {
-    private readonly IAccountRepository _accountRepository;
-
-    public CreateAccountCommandHandler(IAccountRepository accountRepository)
-    {
-        _accountRepository = accountRepository;
-    }
+    private readonly IAccountRepository _accountRepository = accountRepository;
+    private readonly IFiservService _fiservService = fiservService;
 
     public async Task<CreateAccountResult> HandleAsync(CreateAccountCommand command, CancellationToken cancellationToken)
     {
-        // TODO: Need to let database handle creating the GUID
-        var account = new Account(command.AccountNumber, command.CustomerId);
+        // Need to research Fiserv or get a domain expert to fill in the blanks haha
+        // Need a automapper to map between domain and external service models
+        var fiservAccountRequest = new FiservAccountRequest
+        {
+            PartyAcctRelInfo = new PartyAcctRelInfo
+            {
+                PartyRef = new PartyRef
+                {
+                    PartyKeys = new PartyKeys
+                    {
+                        PartyIdentType = "PersonNum",
+                        PartyIdent = "100000253905" // TODO: Add Customer Number to domain model
+                    }
+                },
+                PartyAcctRelData =
+                [
+                    new PartyAcctRelData
+                    {
+                        PartyAcctRelType = "OWNR"
+                    }
+                ],
+                TaxReportingOwnerInd = true,
+                TaxReportingSignerInd = true
+            },
+            DepositAcctInfo = new DepositAcctInfo
+            {
+                AcctType = "DDA",
+                ProductIdent = "Basic Checking",
+                OpenDt = DateTime.UtcNow.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture),
+                Nickname = "My Checking",
+                SourceOfFunds = "NMCS"
+            },
+        };
+
+        var response = await _fiservService.AddAccountAsync(fiservAccountRequest);
+        var fiservAcctId = FiservAcctId.From(response.AcctStatusRec.AcctKeys.AcctId);
+
+        // TODO: Let database handle GUID generation for sequential IDs for better performance
+        var account = new Account(command.AccountNumber, command.CustomerId, fiservAcctId);
 
         await _accountRepository.AddAsync(account);
 
