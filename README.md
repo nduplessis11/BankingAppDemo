@@ -43,48 +43,25 @@ The project is designed using the following architectural principles:
 BankingApp
 │
 ├── src
-│   ├── AccountService
-│   │   ├── AccountService.Api          # Minimal API and gRPC layer for account-related operations
-│   │   ├── AccountService.Domain       # Domain models, entities, and value objects (FDX-compliant)
-│   │   ├── AccountService.Application  # Application layer with CQRS commands, queries, gRPC handlers
-│   │   ├── AccountService.Infrastructure # Infrastructure layer, repositories, RabbitMQ producers
-│   │   └── AccountService.Tests        # Unit, integration, and gRPC tests for AccountService
+│   ├── Services
+│   │   ├── AccountService
+│   │   │   ├── AccountService.Api          # Minimal API and gRPC layer for account-related operations
+│   │   │   ├── AccountService.Domain       # Domain models, entities, and value objects
+│   │   │   ├── AccountService.Application  # Application layer with CQRS commands, queries, gRPC handlers
+│   │   │   ├── AccountService.Infrastructure # Infrastructure layer, repositories, RabbitMQ producers
+│   │   │   └── AccountService.Tests        # Unit, integration, and gRPC tests for AccountService
+│   │   │
+│   │   ├── SharedKernel
+│   │       ├── SharedKernel.Domain         # Common domain entities, value objects, exceptions
+│   │       ├── SharedKernel.Application    # CQRS and common utility classes
+│   │       ├── SharedKernel.Infrastructure # Common infrastructure, gRPC services, RabbitMQ configurations
+│   │       └── SharedKernel.Tests          # Shared kernel tests
 │   │
-│   ├── TransactionService
-│   │   ├── TransactionService.Api      # Minimal API and gRPC layer for transaction-related operations
-│   │   ├── TransactionService.Domain   # Domain models, entities, and value objects (FDX-compliant)
-│   │   ├── TransactionService.Application # Application layer with CQRS commands, queries, gRPC handlers
-│   │   ├── TransactionService.Infrastructure # Infrastructure layer, repositories, RabbitMQ producers and consumers
-│   │   └── TransactionService.Tests    # Unit, integration, and gRPC tests for TransactionService
-│   │
-│   ├── CustomerService
-│   │   ├── CustomerService.Api         # Minimal API and gRPC layer for customer management operations
-│   │   ├── CustomerService.Domain      # Domain models, entities, and value objects (BIAN-compliant)
-│   │   ├── CustomerService.Application # Application layer with CQRS commands, queries, gRPC handlers
-│   │   ├── CustomerService.Infrastructure # Infrastructure layer, repositories, RabbitMQ consumers
-│   │   └── CustomerService.Tests       # Unit, integration, and gRPC tests for CustomerService
-│   │
-│   ├── IntegrationService
-│   │   ├── IntegrationService.Api      # Minimal API and gRPC layer for external system integrations
-│   │   ├── IntegrationService.Domain   # Domain models, entities, and value objects (FDX/BIAN-compliant)
-│   │   ├── IntegrationService.Application # Application layer with integration commands, queries, gRPC handlers
-│   │   ├── IntegrationService.Infrastructure # Infrastructure layer, external API clients, RabbitMQ producers and consumers
-│   │   └── IntegrationService.Tests    # Unit, integration, and gRPC tests for IntegrationService
-│   │
-│   ├── AuditService
-│   │   ├── AuditService.Api            # Minimal API layer for auditing and logging
-│   │   ├── AuditService.Domain         # Domain models, entities, and value objects for audit logs
-│   │   ├── AuditService.Application    # Application layer with CQRS commands, queries
-│   │   ├── AuditService.Infrastructure # Infrastructure layer, repositories, RabbitMQ consumers
-│   │   └── AuditService.Tests          # Unit and integration tests for AuditService
-│   │
-│   ├── SharedKernel
-│   │   ├── SharedKernel.Domain         # Common domain entities, value objects, exceptions
-│   │   ├── SharedKernel.Infrastructure # Common infrastructure, gRPC services, RabbitMQ configurations
-│   │   └── SharedKernel.Tests          # Shared kernel tests
+│   ├── ExternalServices
+│       └── MockFiservDnaCoreApi            # Mock implementation of Fiserv API
 │
 └── build
-    ├── Dockerfiles                     # Docker configurations for each microservice
-    ├── AzurePipelines                  # CI/CD pipeline configurations for Azure DevOps
-    └── Kubernetes                      # Kubernetes deployment configurations
+    ├── docker-compose                      # Docker configurations for Services and ExternalServices
+    ├── AzurePipelines                      # CI/CD pipeline configurations for Azure DevOps
+    └── Kubernetes                          # Kubernetes deployment configurations
 ```
