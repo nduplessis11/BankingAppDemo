@@ -19,7 +19,7 @@ public class CreateAccountCommandHandler(IAccountRepository accountRepository, I
 
     public async Task<CreateAccountResult> HandleAsync(CreateAccountCommand command, CancellationToken cancellationToken)
     {
-        // Need a automapper to map between domain and external service models
+        // TODO: Automapper to map DTO between domain and external service models
         var fiservAccountRequest = new FiservAccountRequest
         {
             PartyAcctRelInfo = new PartyAcctRelInfo
