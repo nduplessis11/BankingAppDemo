@@ -19,7 +19,6 @@ public class CreateAccountCommandHandler(IAccountRepository accountRepository, I
 
     public async Task<CreateAccountResult> HandleAsync(CreateAccountCommand command, CancellationToken cancellationToken)
     {
-        // Need to research Fiserv or get a domain expert to fill in the blanks haha
         // Need a automapper to map between domain and external service models
         var fiservAccountRequest = new FiservAccountRequest
         {
@@ -30,7 +29,7 @@ public class CreateAccountCommandHandler(IAccountRepository accountRepository, I
                     PartyKeys = new PartyKeys
                     {
                         PartyIdentType = "PersonNum",
-                        PartyIdent = "100000253905" // TODO: Add Customer Number to domain model
+                        PartyIdent = command.CustomerId.ToString()
                     }
                 },
                 PartyAcctRelData =
